@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Masked Errors (Cross-Domain Scripts)</title>
+    <script
+      type="text/javascript"
+      src="https://tests.boris.schapira.dev/masked-errors/script.js"
+    ></script>
+    <script>
+      addEventListener("load", () => {
+        window.adaptDataLayer = function () {
+          const cbDataIn = document.getElementById("dataInLayer"),
+            cta = document.getElementById("ctaVerbatim");
+          if (cbDataIn && cbDataIn.checked) {
+            cta.style = "display: none;";
+            cdData = {
+              pageType: "Test page",
+            };
+          } else {
+            cta.style = "display: inline;";
+            cdData = {};
+          }
+        };
+        document.getElementById("initScript").addEventListener("click", () => {
+          cdscript.init();
+        });
+        document
+          .getElementById("dataInLayer")
+          .addEventListener("change", adaptDataLayer);
+        adaptDataLayer();
+      });
+    </script>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <style>#scriptErrorList{border:1px solid;padding:10px;padding-left:40px}</style>
+  </head>
+  <body>
+    <h1 style="color: red">Test where errors are masked</h1>
+    <p>
+      In this test, we will load a script from an external domain. This script
+      should load perfectly. However, when you click on "Execute", it will try
+      to use information that is available in the data layer of this page, and
+      fail if the information is not here. By default, the information is
+      removed. Click below to add it.
+    </p>
+    <div>
+      <input
+        type="checkbox"
+        id="dataInLayer"
+        name="dataInLayer"
+        value="dataIn"
+      />
+      <label for="dataInLayer">The right data is in the data layer</label>
+    </div>
+    <p>
+      During this test, you can open your DevTools Console (<kbd>Ctrl</kbd>+<kbd>Maj</kbd>+<kbd
+        >i</kbd
+      >
+      or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>i</kbd> depending on your operating
+      system, then "Console" tab) to look at the logs.
+    </p>
+    <p>In this test:</p>
+    <ol>
+      <li>
+        Script is hosted on another origin (schapira.dev), delivered
+        <strong>without</strong> the "access-control-allow-origin: *" header
+      </li>
+      <li>
+        Script is loaded <strong>without</strong> the
+        <code>crossorigin</code> attribute
+      </li>
+    </ol>
+    <p>
+      Click here to execute the script:
+      <button id="initScript" onclick="cdscript.init">Execute<span id="ctaVerbatim"> and produce an error</span></button>
+    </p>
+    <p>Errors as seen by JavaScript (open the Console for more info):</p>
+    <ul id="scriptErrorList"></ul>
+    <p>
+      <a href="https://tests.boris.schapira.dev/masked-errors/"
+        >See what happenned when errors are not masked.</a
+      >
+    </p>
+    <script>
+      window.addEventListener("error", (e) => {
+        const { message, filename, lineno, colno, error } = e;
+
+        const newE = document.createElement("li");
+        newE.append(
+          document.createTextNode(
+            `Message: ${message}, Filename: ${filename}, Line number: ${lineno}, Column number; ${colno}`
+          )
+        );
+        document.getElementById("scriptErrorList").append(newE);
+        console.info("Script error.", e);
+      });
+    </script>
+  </body>
+</html>
