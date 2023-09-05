@@ -40,17 +40,8 @@
       should load perfectly. However, when you click on "Execute", it will try
       to use information that is available in the data layer of this page, and
       fail if the information is not here. By default, the information is
-      removed. Click below to add it.
+      removed.
     </p>
-    <div>
-      <input
-        type="checkbox"
-        id="dataInLayer"
-        name="dataInLayer"
-        value="dataIn"
-      />
-      <label for="dataInLayer">The right data is in the data layer</label>
-    </div>
     <p>
       During this test, you can open your DevTools Console (<kbd>Ctrl</kbd>+<kbd>Maj</kbd>+<kbd
         >i</kbd
@@ -73,6 +64,15 @@
       Click here to execute the script:
       <button id="initScript" onclick="cdscript.init">Execute<span id="ctaVerbatim"> and produce an error</span></button>
     </p>
+    <div>
+      <input
+        type="checkbox"
+        id="dataInLayer"
+        name="dataInLayer"
+        value="dataIn"
+      />
+      <label for="dataInLayer">Add the data is in the data layer (to remove the error)</label>
+    </div>
     <p>Errors as seen by JavaScript (open the Console for more info):</p>
     <ul id="scriptErrorList"></ul>
     <p>
