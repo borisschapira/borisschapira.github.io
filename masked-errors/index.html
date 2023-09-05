@@ -31,7 +31,9 @@
       });
     </script>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
-    <style>#scriptErrorList{border:1px solid;padding:10px;padding-left:40px}</style>
+    <style>
+      #scriptErrorList{border:1px solid;padding:10px;padding-left:40px}
+    </style>
   </head>
   <body>
     <h1 style="color: red">Test where errors are masked</h1>
@@ -43,11 +45,10 @@
       removed.
     </p>
     <p>
-      During this test, you can open your DevTools Console (<kbd>Ctrl</kbd>+<kbd>Maj</kbd>+<kbd
-        >i</kbd
-      >
-      or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>i</kbd> depending on your operating
-      system, then "Console" tab) to look at the logs.
+      During this test, you can open your DevTools Console
+      (<kbd>Ctrl</kbd>+<kbd>Maj</kbd>+<kbd>i</kbd> or
+      <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>i</kbd> depending on your operating system,
+      then "Console" tab) to look at the logs.
     </p>
     <p>In this test:</p>
     <ol>
@@ -62,7 +63,9 @@
     </ol>
     <p>
       Click here to execute the script:
-      <button id="initScript" onclick="cdscript.init">Execute<span id="ctaVerbatim"> and produce an error</span></button>
+      <button id="initScript" onclick="cdscript.init">
+        Execute<span id="ctaVerbatim"> and produce an error</span>
+      </button>
     </p>
     <div>
       <input
@@ -71,7 +74,9 @@
         name="dataInLayer"
         value="dataIn"
       />
-      <label for="dataInLayer">Add the data is in the data layer (to remove the error)</label>
+      <label for="dataInLayer"
+        >Add the data is in the data layer (to remove the error)</label
+      >
     </div>
     <p>Errors as seen by JavaScript (open the Console for more info):</p>
     <ul id="scriptErrorList"></ul>

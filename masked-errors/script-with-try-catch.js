@@ -1,7 +1,7 @@
 console.log("Script loaded.");
 window.cdscript = {
   init: function () {
-    // catching and re-throwing and error 
+    // catching and re-throwing and error
     // makes it visible to error listeners
     try {
       if (!(cdData && cdData.pageType)) {
