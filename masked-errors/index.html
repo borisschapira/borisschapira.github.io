@@ -36,54 +36,61 @@
     </style>
   </head>
   <body>
-    <h1 style="color: red">Test where errors are masked</h1>
-    <p>
-      In this test, we will load a script from an external domain. This script
-      should load perfectly. However, when you click on "Execute", it will try
-      to use information that is available in the data layer of this page, and
-      fail if the information is not here. By default, the information is
-      removed.
-    </p>
-    <p>
-      During this test, you can open your DevTools Console
-      (<kbd>Ctrl</kbd>+<kbd>Maj</kbd>+<kbd>i</kbd> or
-      <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>i</kbd> depending on your operating system,
-      then "Console" tab) to look at the logs.
-    </p>
-    <p>In this test:</p>
-    <ol>
-      <li>
-        Script is hosted on another origin (schapira.dev), delivered
-        <strong>without</strong> the "access-control-allow-origin: *" header
-      </li>
-      <li>
-        Script is loaded <strong>without</strong> the
-        <code>crossorigin</code> attribute
-      </li>
-    </ol>
-    <p>
-      Click here to execute the script:
-      <button id="initScript" onclick="cdscript.init">
-        Execute<span id="ctaVerbatim"> and produce an error</span>
-      </button>
-      <br>
-      <input
-        type="checkbox"
-        id="dataInLayer"
-        name="dataInLayer"
-        value="dataIn"
-      />
-      <label for="dataInLayer"
-        >Add the data is in the data layer (to remove the error)</label
-      >
-    </p>
-    <p>On this page, we are using a snippet of Javascript to capture the errors. When errors are masked, another script cannot access the details that <strong>you</strong> can see in the Console.</p>
-    <ul id="scriptErrorList"></ul>
-    <p>
-      <a href="https://tests.boris.schapira.dev/masked-errors/"
-        >See what happenned when errors are not masked.</a
-      >
-    </p>
+    <main>
+      <h1 style="color: red">Test where errors are masked</h1>
+      <p>
+        In this test, we will load a script from an external domain. This script
+        should load perfectly. However, when you click on "Execute", it will try
+        to use information that is available in the data layer of this page, and
+        fail if the information is not here. By default, the information is
+        removed.
+      </p>
+      <p>
+        During this test, you can open your DevTools Console
+        (<kbd>Ctrl</kbd>+<kbd>Maj</kbd>+<kbd>i</kbd> or
+        <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>i</kbd> depending on your operating
+        system, then "Console" tab) to look at the logs.
+      </p>
+      <p>In this test:</p>
+      <ol>
+        <li>
+          Script is hosted on another origin (schapira.dev), delivered
+          <strong>without</strong> the "access-control-allow-origin: *" header
+        </li>
+        <li>
+          Script is loaded <strong>without</strong> the
+          <code>crossorigin</code> attribute
+        </li>
+      </ol>
+      <p>
+        Click here to execute the script:
+        <button id="initScript" onclick="cdscript.init">
+          Execute<span id="ctaVerbatim"> and produce an error</span>
+        </button>
+        <br />
+        <input
+          type="checkbox"
+          id="dataInLayer"
+          name="dataInLayer"
+          value="dataIn"
+        />
+        <label for="dataInLayer"
+          >Add the data is in the data layer (to remove the error)</label
+        >
+      </p>
+      <p>
+        On this page, we are using a snippet of Javascript to capture the
+        errors. When errors are masked, another script cannot access the details
+        that <strong>you</strong> can see in the Console. See below what happens
+        when you click on "Exexute and produce an error":
+      </p>
+      <ul id="scriptErrorList"></ul>
+      <p>
+        <a href="https://tests.boris.schapira.dev/masked-errors/"
+          >See what happenned when errors are not masked.</a
+        >
+      </p>
+    </main>
     <script>
       window.addEventListener("error", (e) => {
         const { message, filename, lineno, colno, error } = e;
